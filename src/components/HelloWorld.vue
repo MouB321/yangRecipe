@@ -11,9 +11,6 @@
           Core Docs
         </a>
       </li>
-
-
-      
       <li>
         <a
           href="https://forum.vuejs.org"
