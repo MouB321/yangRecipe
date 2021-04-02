@@ -29,6 +29,15 @@ exports.cssLoaders = function (options) {
     }
   }
 
+  // 配置px2rem-loader
+  const px2remLoader = {
+    loader: 'px2rem-loader',
+    options: {
+      /* 根据vant的适配，这里需设置为37.5 */
+      remUnit: 37.5,
+    }
+  }
+
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
     const loaders = options.usePostCSS ? [cssLoader, postcssLoader] : [cssLoader]
