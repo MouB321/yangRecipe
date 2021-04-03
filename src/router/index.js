@@ -57,5 +57,13 @@ export default new Router({
         tabBar: true
       }
     },
+
+    // 组件测试路由
+    
+    {
+      path: '/RecommendItem',
+      name: 'RecommendItem',
+      component: resolve => require(['@/components/recommend/RecommendItem.vue'], resolve),
+    },
   ]
 })

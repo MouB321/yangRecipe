@@ -1,7 +1,7 @@
 <template>
   <div>
     <bottom-bar :type="'recommend'"></bottom-bar>
-    <div class="top-bar clearfix">
+    <div class="recommend clearfix">
       <div class="search-container">
         <div 
           class="search-content"
@@ -30,6 +30,14 @@
           </van-swipe-item>
         </van-swipe>
       </div>
+      <div class="recommend-item-content">
+        <recommend-item 
+          v-for="i in 10" 
+          :key="i" 
+          :dataObj="dataObj"
+        >
+        </recommend-item>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +45,7 @@
 <script>
 import { Cell, CellGroup, Swipe, SwipeItem, Lazyload, Icon } from "vant";
 import bottomBar from "../../components/BottomBar";
+import recommendItem from "../../components/recommend/RecommendItem";
 export default {
   name: "recommend",
   data() {
@@ -48,6 +57,13 @@ export default {
         'https://img01.yzcdn.cn/vant/apple-1.jpg',
         'https://img01.yzcdn.cn/vant/apple-2.jpg',
       ],
+
+      dataObj: {
+        name: "鱼香肉丝怎么做才能做得比包书言做出来的鱼香肉丝一样好吃",
+        imgUrl: require('../../assets/test1.jpg'),
+        viewTimes: 10000,
+        thumbTimes: 100,
+      },
     };
   },
   methods:{
@@ -65,6 +81,7 @@ export default {
     [Lazyload.name]:Lazyload, 
     [Icon.name]:Icon, 
     bottomBar,
+    recommendItem,
   }
 };
 </script>
@@ -77,6 +94,8 @@ export default {
 //   text-align: center;
 //   background-color: #39a9ed;
 // }
+.recommend{
+  margin-bottom: 55px;
   // 搜索框部分样式
   .search-container{
     height: 45px;
@@ -102,7 +121,7 @@ export default {
   }
   // 轮播图部分样式 
   .swipe {
-    width: 98%;
+    width: 350px;
     height: 200px;
     border-radius: 8px;
     margin: 7px auto 0;
@@ -117,6 +136,7 @@ export default {
       }
     }
   }
+}
 </style>
 <style lang="scss">
 // vant轮播图样式覆盖

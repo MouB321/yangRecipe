@@ -1,6 +1,17 @@
+/* clearfix解决高度塌陷问题 */
 .clearfix::before,
 .clearfix::after{
   display: table;
   content: "";
   clear: both;
+}
+/* 超过两行显示省略号 */
+.ellipsis_2 {
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: left;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }

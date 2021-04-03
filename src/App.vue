@@ -1,5 +1,6 @@
 <template>
-  <div id="app">
+  <!-- 加上clearfix防止高度塌陷问题 -->
+  <div id="app" class="clearfix">
     <router-view/>
   </div>
 </template>
