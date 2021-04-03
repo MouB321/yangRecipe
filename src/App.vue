@@ -23,5 +23,7 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
   background: #f5f5f5;
+  /* 设置最小高度，令背景颜色填充满 */
+  min-height: calc(100vh - 50px);
 }
 </style>
