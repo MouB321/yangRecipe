@@ -9,7 +9,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: resolve => require(['@/pages/index.vue'], resolve),
+      component: resolve => require(['@/pages/recommend/recommend.vue'], resolve),
     },
     {
       path: '/HelloWorld',

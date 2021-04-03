@@ -31,19 +31,36 @@
         </van-swipe>
       </div>
       <div class="recommend-item-content">
-        <recommend-item 
+        <!-- 改为使用list列表组件进行展示，另外结合下拉刷新进行使用 -->
+        <!-- <recommend-item 
           v-for="i in 10" 
           :key="i" 
           :dataObj="dataObj"
         >
-        </recommend-item>
+        </recommend-item> -->
+        <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+          <van-list
+            v-model="loading"
+            :finished="finished"
+            finished-text="没有更多了"
+            @load="onLoad"
+          >
+            <recommend-item 
+              v-for="(item, index) in list" 
+              :key="index" 
+              :dataObj="item"
+            >
+            </recommend-item>
+            <!-- <van-cell v-for="item in list" :key="item" :title="item" /> -->
+          </van-list>
+        </van-pull-refresh>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Cell, CellGroup, Swipe, SwipeItem, Lazyload, Icon } from "vant";
+import { Cell, CellGroup, Swipe, SwipeItem, Lazyload, Icon, List, PullRefresh } from "vant";
 import bottomBar from "../../components/BottomBar";
 import recommendItem from "../../components/recommend/RecommendItem";
 export default {
@@ -64,6 +81,13 @@ export default {
         viewTimes: 10000,
         thumbTimes: 100,
       },
+
+      // 下拉list部分
+      list: [],
+      loading: false,
+      finished: false,
+      refreshing: false,
+
     };
   },
   methods:{
@@ -71,6 +95,32 @@ export default {
       this.$router.push({
         name: "search",
       });
+    },
+    onLoad() {
+      setTimeout(() => {
+        if (this.refreshing) {
+          this.list = [];
+          this.refreshing = false;
+        }
+
+        for (let i = 0; i < 10; i++) {
+          this.list.push(this.dataObj);
+        }
+        this.loading = false;
+
+        if (this.list.length >= 40) {
+          this.finished = true;
+        }
+      }, 1000);
+    },
+    onRefresh() {
+      // 清空列表数据
+      this.finished = false;
+
+      // 重新加载数据
+      // 将 loading 设置为 true，表示处于加载状态
+      this.loading = true;
+      this.onLoad();
     },
   },
   components: {
@@ -80,6 +130,8 @@ export default {
     [SwipeItem.name]:SwipeItem, 
     [Lazyload.name]:Lazyload, 
     [Icon.name]:Icon, 
+    [List.name]:List, 
+    [PullRefresh.name]: PullRefresh, 
     bottomBar,
     recommendItem,
   }
