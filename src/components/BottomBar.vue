@@ -126,5 +126,11 @@ export default {
   .is-active{
     color: #35d6b6;
   }
+
 }
+</style>
+<style lang="scss">
+  .van-tabbar{
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.50);
+  }
 </style>
