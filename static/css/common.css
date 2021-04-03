@@ -1,0 +1,6 @@
+.clearfix::before,
+.clearfix::after{
+  display: table;
+  content: "";
+  clear: both;
+}

@@ -1,9 +1,16 @@
 <template>
   <div>
     <bottom-bar :type="'recommend'"></bottom-bar>
-    <div class="top-bar">
-      <div class="search-content">
-
+    <div class="top-bar clearfix">
+      <div class="search-container">
+        <div 
+          class="search-content"
+          @click="toUrl()"
+        >
+            <van-icon name="search" size="16"></van-icon>
+            <span>大家都在搜鱼香肉丝</span>
+          <div></div>
+        </div>
       </div>
       <div class="swipe">
         <!-- 轮播图以及页面懒加载 -->
@@ -28,7 +35,7 @@
 </template>
 
 <script>
-import { Cell, CellGroup, Swipe, SwipeItem, Lazyload } from "vant";
+import { Cell, CellGroup, Swipe, SwipeItem, Lazyload, Icon } from "vant";
 import bottomBar from "../../components/BottomBar";
 export default {
   name: "recommend",
@@ -43,12 +50,20 @@ export default {
       ],
     };
   },
+  methods:{
+    toUrl(){
+      this.$router.push({
+        name: "search",
+      });
+    },
+  },
   components: {
     [Cell.name]: Cell,
     [CellGroup.name] :CellGroup,
     [Swipe.name]:Swipe, 
     [SwipeItem.name]:SwipeItem, 
     [Lazyload.name]:Lazyload, 
+    [Icon.name]:Icon, 
     bottomBar,
   }
 };
@@ -62,10 +77,35 @@ export default {
 //   text-align: center;
 //   background-color: #39a9ed;
 // }
-  .swipe {
+  // 搜索框部分样式
+  .search-container{
+    height: 45px;
     width: 100%;
+    background: linear-gradient(149deg, #1DEFCA 0%, #39ed66 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .search-content{
+      width: 350px;
+      height: 30px;
+      background: #FAFAFA;
+      border-radius: 15px;
+      opacity: 0.79;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      span{
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+  }
+  // 轮播图部分样式 
+  .swipe {
+    width: 98%;
     height: 200px;
-    border-radius: 16px;
+    border-radius: 8px;
+    margin: 7px auto 0;
     .swipe_wrap {
       width: 100%;
       height: inherit;

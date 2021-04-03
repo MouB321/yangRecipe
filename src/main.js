@@ -6,11 +6,12 @@ import 'lib-flexible'
 
 // vue中的图片懒加载
 import {lazyload} from "vant";
-
 Vue.use(lazyload, {
   lazyComponent: true,
 });
 
+// 引入common.css样式
+import "../static/css/common.css"
 
 Vue.config.productionTip = false
 
