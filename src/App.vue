@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
+    <bottom-bar />
   </div>
 </template>
 
 <script>
+import bottomBar from "./components/BottomBar.vue"
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    bottomBar,
+  }
 }
 </script>
 
@@ -19,5 +23,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
+  background: #f5f5f5;
 }
 </style>
