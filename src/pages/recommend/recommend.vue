@@ -132,7 +132,7 @@ export default {
         width: 100%;
         height: inherit;
         box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.3);
-        border-radius: 16px;
+        border-radius: 8px;
       }
     }
   }
