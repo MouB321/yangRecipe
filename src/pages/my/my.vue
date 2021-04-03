@@ -1,10 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <h2>Ecosystem</h2>
-
-    <!-- testCode -->
+  <div>
+    <bottom-bar :type="'my'"></bottom-bar>
+    <span>my</span>
     <div>
       <van-cell-group>
         <van-cell title="单元格" value="内容"></van-cell>
@@ -16,8 +13,9 @@
 
 <script>
 import { Cell, CellGroup} from "vant";
+import bottomBar from "../../components/BottomBar";
 export default {
-  name: "HelloWorld",
+  name: "my",
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
@@ -26,14 +24,9 @@ export default {
   components: {
     [Cell.name]: Cell,
     [CellGroup.name] :CellGroup,
+    bottomBar,
   }
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
 </style>

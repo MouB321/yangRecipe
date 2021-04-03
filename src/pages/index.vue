@@ -1,16 +1,6 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <h2>Ecosystem</h2>
-
-    <!-- testCode -->
-    <div>
-      <van-cell-group>
-        <van-cell title="单元格" value="内容"></van-cell>
-        <van-cell title="单元格" value="内容"></van-cell>
-      </van-cell-group>
-    </div>
+  <div>
+    <span>shouye1</span>
   </div>
 </template>
 
