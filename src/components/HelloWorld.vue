@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { Cell, CellGroup} from "vant";
+import { Cell, CellGroup, Toast} from "vant";
 export default {
   name: "HelloWorld",
   data() {
@@ -26,6 +26,7 @@ export default {
   components: {
     [Cell.name]: Cell,
     [CellGroup.name] :CellGroup,
+    [Toast.name]:Toast,
   }
 };
 </script>
