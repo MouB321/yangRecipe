@@ -87,10 +87,10 @@ export default {
       loading: false,
       finished: false,
       refreshing: false,
-
     };
   },
   methods:{
+    // recommendCPN对应的方法
     toUrl(){
       this.$router.push({
         name: "search",
