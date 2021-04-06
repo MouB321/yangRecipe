@@ -238,10 +238,10 @@ export default {
   // 重置分页部分样式
   .van-pagination__item--active{
     color: #fff !important; // 必须加上important
-    background-color: rgb(53, 214, 182);
+    background-color: #35D6B6;
   }
   .van-pagination__item{
-    color: rgb(53, 214, 182);
+    color: #35D6B6;
   }
   .van-pagination__item:active{
     background-color: rgb(53, 214, 182);
