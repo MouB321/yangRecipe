@@ -16,16 +16,18 @@
       </div>
     </div> -->
 
-
     <van-tabbar 
       v-model="currentIndex"
       active-color="#35d6b6" 
-      inactive-color="#888888">
+      inactive-color="#888888"
+    >
       <van-tabbar-item 
         v-for="(item, index) in itemList" 
         :key="index" 
         :icon="item.icon"
-        :to="item.path">
+        :to="item.path"
+        @click="clickHandler(index)">
+        <!-- 在当前页面点击时，会跳转到最上方 -->
         {{item.name}}
       </van-tabbar-item>
     </van-tabbar>
@@ -43,6 +45,7 @@ export default {
     return {
       msg: "Welcome to Your Vue.js App",
       currentIndex: "",
+      handfulCurrentIndex: "",
       // 标题数组
       itemList: [
         {name: "推荐", icon:"wap-home-o", size: 20, isActive: false, path: "recommend"},
@@ -50,6 +53,8 @@ export default {
         {name: "待定", icon:"like-o", size: 20, isActive: false, path: "feast"},
         {name: "我的", icon:"manager-o", size: 20, isActive: false, path: "my"},
       ],
+      // 回到顶部所需变量
+      scrollTop: 0,
     };
   },
   created(){
@@ -61,16 +66,22 @@ export default {
     // 在进行currentIndex的active调整
     // this.activeSwitch(this.currentIndex);
   },
+  mounted(){
+    // 在文档完成渲染时，在页面进行滚动时，动态改变当前的scrollTop值
+    window.addEventListener('scroll', this.handleScroll) 
+  },
+  destroyed(){
+    // 在销毁时，将定时器和绑定的事件进行清空
+    window.removeEventListener('scroll', this.handleScroll) 
+    if (this.interval) { 
+      clearInterval(this.interval) 
+    }
+  },
   methods: {
     // 将传入type转换为currentIndex
     typeToCurrentIndex(){
-      console.log("this.type");
-      console.log(this.type);
-      // this.currentIndex = 
-      //   this.type=="recommend" ? 0 :
-      //   this.type=="warehouse" ? 1 :
-      //   this.type=="feast" ? 2 : 3;
-      
+      // console.log("this.type");
+      // console.log(this.type);
       switch (this.type) {
         case "recommend":
           this.currentIndex = 0;
@@ -85,6 +96,8 @@ export default {
           this.currentIndex = 3;
           break;
       }
+      // 设置handfulindex(这个index是通过手动调整的，用来确定前一个index状态)
+      this.handfulCurrentIndex = this.currentIndex;
       console.log(this.currentIndex);
     },
     // 切换active状态函数
@@ -92,8 +105,35 @@ export default {
       this.itemList[this.currentIndex].isActive = false;
       this.currentIndex = index;
       this.itemList[this.currentIndex].isActive = true;
-    }
-    // 具体实现方法
+    },
+
+    clickHandler(index){
+      console.log(index);
+      console.log(this.handfulCurrentIndex);
+      // 判断是不是当前页面
+      if(this.handfulCurrentIndex == index){
+        // 是则跳转到最顶部
+        console.log("let s go top");
+        this.backToTopFun();
+      }
+      // handful设置为正确值
+      this.handfulCurrentIndex = this.currentIndex;
+    },
+
+    // 返回顶部具体实现方法
+    backToTopFun () { 
+      let timer = setInterval(() => { 
+        let speed = Math.floor(-this.scrollTop / 10); 
+        document.documentElement.scrollTop = document.body.scrollTop = this.scrollTop + speed; 
+        if (this.scrollTop === 0) { 
+          clearInterval(timer); 
+        } 
+      }, 20) 
+    }, 
+    handleScroll () { 
+      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop; 
+      this.scrollTop = scrollTop; 
+    } 
   },
   components: {
     [Cell.name]: Cell,
