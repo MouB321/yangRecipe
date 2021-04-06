@@ -46,7 +46,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .recommend-item-container{
-  width: 350px;
+  width: calc(100% - 25px); // 调整使得宽度进行自适应
   height: 109px;
   background: #FFFFFF;
   box-shadow: 0px 3px 8px 0px rgba(181,181,181,0.15);
