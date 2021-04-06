@@ -15,6 +15,12 @@ import "../static/css/common.css"
 
 Vue.config.productionTip = false
 
+// 引入axios和api
+import axios from "../src/config/axios";
+Vue.prototype.$http = axios;
+import api from "../src/server/api";
+Vue.prototype.$api = api;
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
